@@ -5,4 +5,4 @@ export interface Tarefa {
     isFavorite: boolean;
 }
 
-export type DataItem = Tarefa;
+export type TarefaItem = Tarefa;

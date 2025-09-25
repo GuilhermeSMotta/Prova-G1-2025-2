@@ -1,9 +1,9 @@
 import React, { createContext, useState, useContext, type ReactNode } from "react";
-import type { DataItem } from "../types";
+import type { TarefaItem } from "../types";
 
 interface FavoritosContextType {
-    favoritos: DataItem[];
-    addFavorito: (item: DataItem) => void;
+    favoritos: TarefaItem[];
+    addFavorito: (item: TarefaItem) => void;
     removeFavorito: (id: String) => void;
     isFavorito: (id:String) => boolean;
 }
@@ -15,9 +15,9 @@ interface FavoritosProviderProps {
 }
 
 export const FavoritosProvider: React.FC<FavoritosProviderProps> = ({ children }) => {
-    const [favoritos, setFavoritos] = useState<DataItem[]>([]);
+    const [favoritos, setFavoritos] = useState<TarefaItem[]>([]);
 
-    const addFavorito = (item: DataItem) => {
+    const addFavorito = (item: TarefaItem) => {
         setFavoritos((prevFavoritos) => [...prevFavoritos, item]);
     }
 

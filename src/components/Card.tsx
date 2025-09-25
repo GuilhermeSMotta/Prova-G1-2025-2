@@ -1,9 +1,9 @@
 import React from "react";
-import type { DataItem } from "../types";
+import type { TarefaItem } from "../types";
 import './Card.css';
 
 interface CardProps {
-    item: DataItem;
+    item: TarefaItem;
 }
 
 const Card: React.FC<CardProps> = ({ item }) => {

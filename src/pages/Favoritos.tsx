@@ -1,17 +1,23 @@
-import { useFavoritos } from '../context/FavoritosContext';
+import { useTarefas } from '../context/TarefasContext';
 import Card from '../components/Card';
 
 const Favoritos = () => {
-    const { favoritos } = useFavoritos();
+    const { tarefas, favoritos, toggleDone, toggleFavorite } = useTarefas();
+    const tarefasFavoritas = tarefas.filter(tarefa => favoritos.includes(tarefa.id));
+
     return (
         <div>
             <h2>Meus Favoritos</h2>
-            {favoritos.length === 0 ? (
+            {tarefasFavoritas.length === 0 ? (
                 <p>Você ainda não adicionou nenhum item aos favoritos.</p>
-                ) : (
+            ) : (
                 <div className="card-container">
-                    {favoritos.map((item) => (
-                        <Card key={item.id} item={item} />
+                    {tarefasFavoritas.map((tarefa) => (
+                        <Card key={tarefa.id}
+                        tarefa={tarefa}
+                        onToggleDone={() => toggleDone(tarefa.id)}
+                        onToggleFavorite={() => toggleFavorite(tarefa.id)}
+                        />
                     ))}
                 </div>
             )}

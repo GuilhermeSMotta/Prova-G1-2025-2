@@ -1,20 +1,9 @@
 import Card from '../components/Card';
 import TarefaForm from '../components/TarefaForm';
-import type { Tarefa } from '../types';
-import { useState } from 'react';
+import { useTarefas } from '../context/TarefasContext';
 
 const Tarefas = () => {
-    const [tarefas, setTarefas] = useState<Tarefa[]>([]);
-    
-    const addTarefa = (text: string) => {
-        const newTarefa: Tarefa = {
-        id: Date.now().toString(),
-        text,
-        isDone: false,
-        isFavorite: false,
-        };
-        setTarefas([...tarefas, newTarefa]);
-    };
+    const { tarefas, addTarefa, toggleDone, toggleFavorite } = useTarefas();
 
     return (
         <div>
@@ -24,7 +13,12 @@ const Tarefas = () => {
             </div>
             <div className="card-container">
                 {tarefas.map((tarefa) => (
-                <Card key={tarefa.id} item={tarefa} />
+                    <Card
+                        key={tarefa.id}
+                        tarefa={tarefa}
+                        onToggleDone={() => toggleDone(tarefa.id)}
+                        onToggleFavorite={() => toggleFavorite(tarefa.id)}
+                    />
                 ))}
             </div>
         </div>
